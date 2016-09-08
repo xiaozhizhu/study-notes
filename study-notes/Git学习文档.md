@@ -206,6 +206,14 @@ Git跳转的机制是：在Git内部有一个指向当前版本的HEAD指针，�
 	- 没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！  
 
 	如果`git pull`提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令`git branch --set-upstream branch-name origin/branch-name`。
+6. 新建仓库，并将其推送到github上：
+
+		echo "# <repository name>" >> README.md
+		git init
+		git add README.md
+		git commit -m "first commit"
+		git remote add origin https://github.com/xiaozhizhu/<repository name>.git
+		git push -u origin master
 
 ## 标签管理
 ### 标签介绍
@@ -291,3 +299,4 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 1. http://git-scm.com
 2. http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
 3. https://guides.github.com/activities/hello-world/
+4. http://gitbook.liuhui998.com/index.html
