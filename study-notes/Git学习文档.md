@@ -281,6 +281,20 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 	- 当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中
 
 设置别名时，如果使用--global则设置后会把别名放在.gitconfig中的[alias]后面，如果不是用--global则会把别名只放在本地仓库的.git/config中的[alias]后面
+## rebase
+假设你现在基于远程分支"mymaster"，创建一个叫"mywork"的分支。
+如果你想让你的分支`mywork`历史看起来像没有经过任何合并一样，你也许可以用 git rebase:
+
+	$ git rebase mymaster   或者 $ git rebase origin/mymaster
+这些命令会把你的"mywork"分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把"mywork"分支更新到最新的"mymaster"分支，最后把保存的这些补丁应用到"mywork"分支上。  
+当'mywork'分支更新之后，它会指向这些新创建的提交(commit),而那些老的提交会被丢弃。 如果运行垃圾收集命令(pruning garbage collection), 这些被丢弃的提交就会删除. 所以，rebase的使用步骤是：
+
+	$ git rebase mymaster
+	update mywork
+	$ git add <files>
+	$ git commit -m '....'
+	$ git push origin mywork
+
 
 ## 问题
 1. 什么是工作区？什么是暂存区？
